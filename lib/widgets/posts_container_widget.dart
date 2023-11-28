@@ -140,7 +140,19 @@ class _PostStats extends StatelessWidget {
                   size: 20, color: Colors.grey[600]),
               onTap: () {},
               label: 'Likes',
-            )
+            ),
+            _PostButton(
+              icon: Icon(MdiIcons.commentOutline,
+                  size: 20, color: Colors.grey[600]),
+              onTap: () {},
+              label: 'Comments',
+            ),
+            _PostButton(
+              icon: Icon(MdiIcons.shareOutline,
+                  size: 25, color: Colors.grey[600]),
+              onTap: () {},
+              label: 'Share',
+            ),
           ],
         )
       ],
@@ -157,16 +169,22 @@ class _PostButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        height: 25.0,
-        child: Row(
-          children: [
-            icon,
-            const SizedBox(width: 4.0),
-            Text(label),
-          ],
+    return Expanded(
+      child: Material(
+        child: InkWell(
+          onTap: onTap,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            height: 25.0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                icon,
+                const SizedBox(width: 4.0),
+                Text(label),
+              ],
+            ),
+          ),
         ),
       ),
     );
