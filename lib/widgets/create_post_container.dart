@@ -14,7 +14,7 @@ Widget createPostContainer({User? user}) {
             // Profile Avatar
             profileAvatar(
               imageUrl: user?.imageUrl,
-              isActive: true,
+              isActive: false,
             ),
             const SizedBox(
               width: 8.0,

@@ -17,17 +17,21 @@ Widget createRoomButton() {
         ShaderMask(
           shaderCallback: (Rect bounds) =>
               Palette.createRoomGradient.createShader(bounds),
-          child: const Icon(
-            Icons.video_call,
-            size: 35.0,
-            color: Colors.white,
+          child: const Row(
+            children: [
+              Icon(
+                Icons.video_call,
+                size: 35.0,
+                color: Colors.white,
+              ),
+              SizedBox(width: 8.0),
+              Text(
+                'Create\nRoom',
+                style: TextStyle(color: Palette.facebookBlue),
+              )
+            ],
           ),
         ),
-        const SizedBox(width: 8.0),
-        const Text(
-          'Create\nRoom',
-          style: TextStyle(color: Palette.facebookBlue),
-        )
       ],
     ),
   );
