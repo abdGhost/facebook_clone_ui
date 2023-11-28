@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:facebook_clone_ui/widgets/profile_avatar.dart';
 import 'package:flutter/material.dart';
 
 import '../models/user_model.dart';
@@ -11,10 +11,10 @@ Widget createPostContainer({User? user}) {
       children: [
         Row(
           children: [
-            CircleAvatar(
-              radius: 20,
-              backgroundColor: Colors.grey[200],
-              backgroundImage: CachedNetworkImageProvider(user!.imageUrl),
+            // Profile Avatar
+            profileAvatar(
+              imageUrl: user?.imageUrl,
+              isActive: true,
             ),
             const SizedBox(
               width: 8.0,

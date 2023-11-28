@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 Widget rooms({onLinUser}) {
   return Container(
-    color: Colors.orange,
-    height: 60.0,
+    color: Colors.white,
+    height: 70.0,
     child: ListView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 4.0),
+      padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 10.0),
       scrollDirection: Axis.horizontal,
       itemCount: onLinUser.length + 1,
       itemBuilder: (context, index) {
