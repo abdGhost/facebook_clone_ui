@@ -36,6 +36,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                     color: i == widget.selectedIndex
                         ? Palette.facebookBlue
                         : Colors.black45,
+                    size: 30.0,
                   ),
                 ),
               ))
