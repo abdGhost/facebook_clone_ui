@@ -11,6 +11,7 @@ class CreatePostContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDesktop = ResponsiveWidget.isDesktop(context);
+
     return Card(
       margin: EdgeInsets.symmetric(horizontal: isDesktop ? 5.0 : 0.0),
       elevation: isDesktop ? 1.0 : 0.0,
