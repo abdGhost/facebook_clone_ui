@@ -5,11 +5,13 @@ class CustomNavBar extends StatefulWidget {
   final List<IconData> icon;
   final int selectedIndex;
   final Function(int) onTap;
+  final bool isBottomTab;
   const CustomNavBar({
     super.key,
     required this.icon,
     required this.selectedIndex,
     required this.onTap,
+    this.isBottomTab = false,
   });
 
   @override
@@ -21,10 +23,14 @@ class _CustomNavBarState extends State<CustomNavBar> {
   Widget build(BuildContext context) {
     return TabBar(
       indicatorPadding: EdgeInsets.zero,
-      indicator: const BoxDecoration(
-        border: Border(
-          top: BorderSide(color: Palette.facebookBlue, width: 3.0),
-        ),
+      indicator: BoxDecoration(
+        border: widget.isBottomTab == true
+            ? const Border(
+                bottom: BorderSide(color: Palette.facebookBlue, width: 3.0),
+              )
+            : const Border(
+                top: BorderSide(color: Palette.facebookBlue, width: 3.0),
+              ),
       ),
       tabs: widget.icon
           .asMap()

@@ -116,9 +116,14 @@ class _CustomAppbar extends StatelessWidget {
             ),
           ),
           SizedBox(
+            height: double.infinity,
             width: 600.0,
-            child:
-                CustomNavBar(icon: icons, selectedIndex: index, onTap: onTap),
+            child: CustomNavBar(
+              icon: icons,
+              selectedIndex: index,
+              onTap: onTap,
+              isBottomTab: true,
+            ),
           ),
           Expanded(
             child: Row(

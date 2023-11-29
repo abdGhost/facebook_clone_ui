@@ -14,6 +14,7 @@ class UserCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         profileAvatar(imageUrl: user.imageUrl),
         const SizedBox(width: 8.0),

@@ -1,6 +1,7 @@
 import 'package:facebook_clone_ui/config/palette.dart';
 import 'package:facebook_clone_ui/data/data.dart';
 import 'package:facebook_clone_ui/widgets/circle_button.dart';
+import 'package:facebook_clone_ui/widgets/responsive_widget.dart';
 import 'package:facebook_clone_ui/widgets/rooms_widget.dart';
 import 'package:facebook_clone_ui/widgets/stories_widget.dart';
 import 'package:flutter/material.dart';
@@ -15,64 +16,136 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            backgroundColor: Colors.white,
-            centerTitle: false,
-            floating: true,
-            title: const Text(
-              'facebook',
-              style: TextStyle(
-                color: Palette.facebookBlue,
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                letterSpacing: -1.2,
-              ),
+    return const Scaffold(
+      body: ResponsiveWidget(
+        mobile: _HomeScreenMobile(),
+        desktop: _HomeScreenDesktop(),
+      ),
+    );
+  }
+}
+
+class _HomeScreenMobile extends StatelessWidget {
+  const _HomeScreenMobile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      slivers: [
+        SliverAppBar(
+          backgroundColor: Colors.white,
+          centerTitle: false,
+          floating: true,
+          title: const Text(
+            'facebook',
+            style: TextStyle(
+              color: Palette.facebookBlue,
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              letterSpacing: -1.2,
             ),
-            actions: [
-              circleButton(
-                onPress: () {},
-                icon: Icons.search,
-                size: 30.0,
+          ),
+          actions: [
+            circleButton(
+              onPress: () {},
+              icon: Icons.search,
+              size: 30.0,
+            ),
+            circleButton(
+              onPress: () {},
+              icon: MdiIcons.facebookMessenger,
+              size: 30.0,
+            ),
+          ],
+        ),
+        const SliverToBoxAdapter(
+          child: CreatePostContainer(user: currentUser),
+        ),
+        SliverPadding(
+          padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 5.0),
+          sliver: SliverToBoxAdapter(
+            child: rooms(onLinUser: onlineUsers),
+          ),
+        ),
+        SliverPadding(
+          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
+          sliver: SliverToBoxAdapter(
+            child: Stories(
+              currentUser: currentUser,
+              stories: stories,
+            ),
+          ),
+        ),
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              final Post post = posts[index];
+              return PostContainer(post: post);
+            },
+            childCount: posts.length,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _HomeScreenDesktop extends StatelessWidget {
+  const _HomeScreenDesktop({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Flexible(
+          flex: 2,
+          child: Container(
+            color: Colors.green,
+          ),
+        ),
+        const Spacer(),
+        SizedBox(
+          width: 600,
+          child: CustomScrollView(
+            slivers: [
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+                sliver: SliverToBoxAdapter(
+                  child: Stories(
+                    currentUser: currentUser,
+                    stories: stories,
+                  ),
+                ),
               ),
-              circleButton(
-                onPress: () {},
-                icon: MdiIcons.facebookMessenger,
-                size: 30.0,
+              const SliverToBoxAdapter(
+                child: CreatePostContainer(user: currentUser),
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 5.0),
+                sliver: SliverToBoxAdapter(
+                  child: rooms(onLinUser: onlineUsers),
+                ),
+              ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    final Post post = posts[index];
+                    return PostContainer(post: post);
+                  },
+                  childCount: posts.length,
+                ),
               ),
             ],
           ),
-          SliverToBoxAdapter(
-            child: createPostContainer(user: currentUser),
+        ),
+        const Spacer(),
+        Flexible(
+          flex: 2,
+          child: Container(
+            color: Colors.yellow,
           ),
-          SliverPadding(
-            padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 5.0),
-            sliver: SliverToBoxAdapter(
-              child: rooms(onLinUser: onlineUsers),
-            ),
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
-            sliver: SliverToBoxAdapter(
-              child: Stories(
-                currentUser: currentUser,
-                stories: stories,
-              ),
-            ),
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                final Post post = posts[index];
-                return PostContainer(post: post);
-              },
-              childCount: posts.length,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
