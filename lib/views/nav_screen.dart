@@ -32,7 +32,8 @@ class _NavScreenState extends State<NavScreen> {
     return DefaultTabController(
       length: icons.length,
       child: Scaffold(
-        body: TabBarView(
+        body: IndexedStack(
+          index: _selectedIndex,
           children: screens,
         ),
         bottomNavigationBar: Padding(
