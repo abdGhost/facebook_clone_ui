@@ -10,6 +10,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import '../models/post_model.dart';
 import '../widgets/contact_list_user.dart';
 import '../widgets/create_post_container.dart';
+import '../widgets/more_option_list.dart';
 import '../widgets/posts_container_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -119,8 +120,12 @@ class _HomeScreenDesktop extends StatelessWidget {
       children: [
         Flexible(
           flex: 2,
-          child: Container(
-            color: Colors.green,
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: MoreOptionList(users: currentUser),
+            ),
           ),
         ),
         const Spacer(),
@@ -162,9 +167,12 @@ class _HomeScreenDesktop extends StatelessWidget {
         const Spacer(),
         const Flexible(
           flex: 2,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: ContactListUser(user: onlineUsers),
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: ContactListUser(user: onlineUsers),
+            ),
           ),
         ),
       ],
